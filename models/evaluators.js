@@ -6,7 +6,7 @@ const EvaluatorSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   name: { type: String, required: true },
   password: { type: String, required: true },
-  evcode: { type: String, type: unique },
+  evcode: { type: String, unique: true },
   sheetschecked: [{ type: mongoose.Schema.Types.ObjectId, ref: "Sheet" }],
 });
 
