@@ -77,7 +77,7 @@ module.exports.assignExtraSheet = async (req, res) => {
 
 module.exports.students_details = async (req, res) => {
   try {
-    const students = await Student.find({ center: req.user.centerId });
+    const students = await Student.find({ center: req.user.center });
     res.send({ success: true, students });
   } catch (error) {
     res.status(500).send({ success: false, error: error });
