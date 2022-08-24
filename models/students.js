@@ -16,7 +16,7 @@ const StudentSchema = new mongoose.Schema({
     },
   ],
   attendance: [{ type: String }],
-  center: { type: mongoose.Schema.Types.ObjectId, ref: "Center" },
+  center: { type:String  },
 });
 
 const Student = mongoose.model("Student", StudentSchema);

@@ -6,7 +6,7 @@ const InvigilatorSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   name: { type: String, required: true },
   password: { type: String, required: true },
-  center: { type: mongoose.Schema.Types.ObjectId },
+  center: { type: String },
 });
 
 InvigilatorSchema.methods.generateAuthToken = async function () {
