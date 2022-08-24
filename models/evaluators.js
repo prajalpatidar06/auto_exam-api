@@ -6,6 +6,8 @@ const EvaluatorSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   name: { type: String, required: true },
   password: { type: String, required: true },
+  evcode: { type: String, type: unique },
+  sheetschecked: [{ type: mongoose.Schema.Types.ObjectId, ref: "Sheet" }],
 });
 
 EvaluatorSchema.methods.generateAuthToken = async function () {

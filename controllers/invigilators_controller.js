@@ -14,6 +14,7 @@ module.exports.login_invigilator = async (req, res) => {
         success: true,
         message: "User Sign In Successfully",
         token,
+        username: req.body.username,
       });
     }
   } catch (error) {
@@ -71,5 +72,14 @@ module.exports.assignExtraSheet = async (req, res) => {
     }
   } catch (error) {
     res.status(500).send({ success: false, error: error.message });
+  }
+};
+
+module.exports.students_details = async (req, res) => {
+  try {
+    const students = await Student.find({ center: req.user.centerId });
+    res.send({ success: true, students });
+  } catch (error) {
+    res.status(500).send({ success: false, error: error });
   }
 };

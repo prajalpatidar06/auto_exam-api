@@ -6,10 +6,10 @@ const InvigilatorSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   name: { type: String, required: true },
   password: { type: String, required: true },
-  centerId: { type: String },
+  center: { type: mongoose.Schema.Types.ObjectId },
 });
 
-InvigilatorSchema.methods.generateAuthToken = async function() {
+InvigilatorSchema.methods.generateAuthToken = async function () {
   const user = this;
   const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET, {
     expiresIn: "24h",

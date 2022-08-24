@@ -12,6 +12,7 @@ module.exports.login_evaluator = async (req, res) => {
       return res.send({
         success: true,
         message: "User Sign In Successfully",
+        username: req.body.username,
         token,
       });
     }

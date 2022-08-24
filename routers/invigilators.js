@@ -18,4 +18,9 @@ router.post(
   authInvigilator,
   invigilators_controller.assignExtraSheet
 );
+router.get(
+  "/students_details",
+  authInvigilator,
+  invigilators_controller.students_details
+);
 module.exports = router;

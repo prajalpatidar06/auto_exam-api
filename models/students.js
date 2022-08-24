@@ -10,11 +10,12 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  subjects: [
+  subjectCodes: [
     {
-      subjectCode:{type: String}
+      type: String,
     },
   ],
+  attendance: [{ type: String }],
   center: { type: mongoose.Schema.Types.ObjectId, ref: "Center" },
 });
 
