@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const Invigilator = require("../models/invigilators");
-const Evaluator = require("../models/evaluators")
+const Evaluator = require("../models/evaluators");
 
 const getAuthenticatedInvigilator = async (token) => {
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -14,13 +14,15 @@ const getAuthenticatedInvigilator = async (token) => {
 
 const authInvigilator = async (req, res, next) => {
   try {
-    const Authorization = req.header("Authorization");
+    const Authorization = req.query.token;
     if (!Authorization) {
-      return res.status(401).send({ success: false, error: "Auth-key Not found" });
+      return res
+        .status(401)
+        .send({ success: false, error: "Auth-key Not found" });
     }
-    const token = Authorization.replace("Bearer ", "");
-    req.token = token;
-    req.user = await getAuthenticatedInvigilator(token);
+    // const token = Authorization.replace("Bearer ", "");
+    req.token = Authorization;
+    req.user = await getAuthenticatedInvigilator(Authorization);
     next();
     return;
   } catch (e) {
@@ -44,13 +46,15 @@ const getAuthenticatedEvaluator = async (token) => {
 
 const authEvaluator = async (req, res, next) => {
   try {
-    const Authorization = req.header("Authorization");
+    const Authorization = req.query.token;
     if (!Authorization) {
-      return res.status(401).send({ success: false, error: "Auth-key Not found" });
+      return res
+        .status(401)
+        .send({ success: false, error: "Auth-key Not found" });
     }
-    const token = Authorization.replace("Bearer ", "");
-    req.token = token;
-    req.user = await getAuthenticatedEvaluator(token);
+    // const token = Authorization.replace("Bearer ", "");
+    req.token = Authorization;
+    req.user = await getAuthenticatedEvaluator(Authorization);
     next();
     return;
   } catch (e) {
@@ -60,9 +64,9 @@ const authEvaluator = async (req, res, next) => {
       message: e.message,
     });
   }
-}
+};
 
 module.exports = {
   authInvigilator,
-  authEvaluator
+  authEvaluator,
 };
