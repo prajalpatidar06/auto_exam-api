@@ -12,9 +12,7 @@ const EvaluatorSchema = new mongoose.Schema({
 
 EvaluatorSchema.methods.generateAuthToken = async function () {
   const user = this;
-  const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET, {
-    expiresIn: "24h",
-  });
+  const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET);
   await user.save();
   return token;
 };
