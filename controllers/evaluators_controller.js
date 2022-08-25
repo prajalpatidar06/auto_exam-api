@@ -30,6 +30,7 @@ module.exports.assign_marks = async (req, res) => {
     if (sheet) {
       if (typeof marks == "number") {
         sheet.marks = marks;
+        sheet.evaluator = req.user._id;
         await sheet.save();
         res.send({ success: true, message: "marks allotted successfully" });
       } else {
