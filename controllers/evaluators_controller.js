@@ -49,8 +49,7 @@ module.exports.assign_marks = async (req, res) => {
 module.exports.checked_sheets = async (req, res) => {
   try {
     const students = await Sheet.find({ evaluator: req.user._id }).populate(
-      "student",
-      { enrollment: 1 }
+      "student"
     );
     res.send({ success: true, students });
   } catch (error) {
