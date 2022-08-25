@@ -16,7 +16,7 @@ const authInvigilator = async (req, res, next) => {
   try {
     const Authorization = req.header("Authorization");
     if (!Authorization) {
-      res.status(401).send({ success: false, error: "Auth-key Not found" });
+      return res.status(401).send({ success: false, error: "Auth-key Not found" });
     }
     const token = Authorization.replace("Bearer ", "");
     req.token = token;
@@ -46,7 +46,7 @@ const authEvaluator = async (req, res, next) => {
   try {
     const Authorization = req.header("Authorization");
     if (!Authorization) {
-      res.status(401).send({ success: false, error: "Auth-key Not found" });
+      return res.status(401).send({ success: false, error: "Auth-key Not found" });
     }
     const token = Authorization.replace("Bearer ", "");
     req.token = token;
