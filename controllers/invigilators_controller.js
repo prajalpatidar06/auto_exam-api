@@ -25,7 +25,7 @@ module.exports.login_invigilator = async (req, res) => {
 module.exports.verifyAdmitCard = async (req, res) => {
   try {
     const id = req.body.id;
-    const student = await Student.findById(id).populate({ path: "center" });
+    const student = await Student.findById(id).populate("center" );
     if (student) {
       res.send({ success: true, student });
     } else {
